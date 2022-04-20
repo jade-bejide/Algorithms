@@ -8,7 +8,4 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
         if diff in hashtable and hashtable[diff]!=i:
             return [i, hashtable[diff]]
         else:
-            if nums[i] in hashtable:
-                hashtable[nums[i]] = i+1
-            else:
-                hashtable[nums[i]] = i
+            hashtable[nums[i]] = i
