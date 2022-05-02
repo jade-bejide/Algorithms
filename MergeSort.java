@@ -15,8 +15,7 @@ public class MergeSort {
         List<Integer> arr = new ArrayList<Integer>();
         
         while (leftIndex < leftSize && rightIndex < rightSize) {
-            if (left.get(leftIndex) < right.get(rightIndex)){
-                
+            if (left.get(leftIndex) < right.get(rightIndex)){   
                 arr.add(left.get(leftIndex));
                 leftIndex++;
             } 
@@ -68,8 +67,8 @@ public class MergeSort {
         }
 
 
-        mergeSort(left);
-        mergeSort(right);
+        left = mergeSort(left);
+        right = mergeSort(right);
 
         arr = merge(left, right);
         
