@@ -16,12 +16,13 @@ public class MergeSort {
         
         while (leftIndex < leftSize && rightIndex < rightSize) {
             if (left.get(leftIndex) < right.get(rightIndex)){
-                leftIndex++;
+                
                 arr.add(left.get(leftIndex));
+                leftIndex++;
             } 
             else {
-                rightIndex++;
                 arr.add(right.get(rightIndex));
+                rightIndex++;
             }
 
         }
