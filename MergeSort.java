@@ -5,7 +5,6 @@ import java.util.List;
 public class MergeSort {
 
     public static List<Integer> merge(List<Integer> left, List<Integer> right) {
-        System.out.println(left + " " +  right);
         int leftSize = left.size();
         int rightSize = right.size();
 
@@ -58,9 +57,9 @@ public class MergeSort {
         List<Integer> right = new ArrayList<>();
 
         if (n > 2) {
-            left = fillSide(arr, 0, Math.floorDiv(n,2));
+            left = arr.subList(0, Math.floorDiv(n,2)+1);
 
-            right = fillSide(arr, Math.floorDiv(n,2)+1, n);
+            right = arr.subList(Math.floorDiv(n,2)+1, n);
         } else {
             left.add(arr.get(0));
             right.add(arr.get(1));
