@@ -5,27 +5,35 @@ import java.util.List;
 public class MergeSort {
 
     public static List<Integer> merge(List<Integer> left, List<Integer> right) {
+        System.out.println(left + " " +  right);
         int leftSize = left.size();
         int rightSize = right.size();
 
-        int i = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
 
         List<Integer> arr = new ArrayList<Integer>();
+        
+        while (leftIndex < leftSize && rightIndex < rightSize) {
+            if (left.get(leftIndex) < right.get(rightIndex)){
+                leftIndex++;
+                arr.add(left.get(leftIndex));
+            } 
+            else {
+                rightIndex++;
+                arr.add(right.get(rightIndex));
+            }
 
-        while (i < leftSize && i < rightSize) {
-            if (left.get(i) < right.get(i)) arr.add(left.get(i));
-            else arr.add(right.get(i));
-            i++;
         }
 
-        while (i < leftSize) {
-            arr.add(left.get(i));
-            i++;
+        while (leftIndex < leftSize) {
+            arr.add(left.get(leftIndex));
+            leftIndex++;
         }
 
-        while (i < rightSize) {
-            arr.add(right.get(i));
-            i++;
+        while (rightIndex < rightSize) {
+            arr.add(right.get(rightIndex));
+            rightIndex++;
         }
 
 
@@ -59,8 +67,8 @@ public class MergeSort {
         }
 
 
-        left = mergeSort(left);
-        right = mergeSort(right);
+        mergeSort(left);
+        mergeSort(right);
 
         arr = merge(left, right);
         
