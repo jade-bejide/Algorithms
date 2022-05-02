@@ -39,15 +39,6 @@ public class MergeSort {
         return arr;
     }
 
-    public static List<Integer> fillSide(List<Integer> arr, int i, int j) {
-        List<Integer> filledArr = new ArrayList<>();
-        for (int k = i; k < j; k++) {
-            filledArr.add(arr.get(k));
-        }
-
-        return filledArr;
-    }
-
     public static List<Integer> mergeSort(List<Integer> arr) {
         int n = arr.size();
 
