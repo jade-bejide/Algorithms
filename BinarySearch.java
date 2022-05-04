@@ -6,13 +6,19 @@ public class BinarySearch {
         Divide - List is halved each time, minimising the problem solving range
         Conquer - Once found, conquer by returning the relevant index
     */
-    
+
     //assume that arr is sorted
     public static int binarySearch(List<Integer> arr, Integer x) {
         int start = 0;
         int end = arr.size()-1;
 
         int mid = Math.floorDiv(start + end, 2);
+
+        if (arr.size() == 2) {
+            if (arr.get(0) == x) return 0;
+            if (arr.get(1) == x) return 1;
+            return -1;
+        }
 
         if (arr.get(mid) == x) return mid;
         else if (arr.size() == 1) return -1; //if first predicate is false and list is of size 1, the item isn't in the list
@@ -29,5 +35,10 @@ public class BinarySearch {
         }
 
         assert(binarySearch(list, 10) == -1);
+
+        List<Integer> list2 = Arrays.asList(1,2);
+
+        assert(binarySearch(list2, 0) == -1);
+        assert(binarySearch(list2, 2) == 1);
     }
 }
