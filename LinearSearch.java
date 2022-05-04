@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class LinearSearch {
@@ -10,5 +11,15 @@ public class LinearSearch {
         }
 
         return -1;
+    }
+
+    public static void main(String... args) {
+        List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9);
+
+        for (int i = 0; i < 10; i++) {
+            assert(linearSearch(list, list.get(i)) == i+1);
+        }
+
+        assert(linearSearch(list, 10) == -1);
     }
 }
