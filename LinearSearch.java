@@ -21,5 +21,10 @@ public class LinearSearch {
         }
 
         assert(linearSearch(list, 10) == -1);
+
+        List<String> artists = Arrays.asList("Beyoncé", "D'Angelo", "Meek Mill", "Masego");
+
+        assert(linearSearch(artists, "André 3000") == -1);
+        assert(linearSearch(artists, "D'Angelo") == 1);
     }
 }
