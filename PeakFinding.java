@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,6 +34,23 @@ public class PeakFinding {
         if (arr.get(mid-1) >= arr.get(mid)) return fastPeakFinding(arr.subList(0, mid));
         // (mid + 1) to consider relative index as list divides in two
         return mid + 1 + fastPeakFinding(arr.subList(mid+1, n));
+    }
+
+    public static List<Integer> kPeaksIterative(List<Integer> arr, int k) {
+        int n = arr.size();
+
+        if (n == 1) return Arrays.asList(0, -1);
+
+        List<Integer> kPeaks = new ArrayList<Integer>();
+        if (arr.get(0) >= arr.get(1)) kPeaks.add(0);
+
+        for (int i = 1; i < n-1; i ++) {
+            if (arr.get(i) >= arr.get(i+1) && arr.get(i) >= arr.get(i-1)) kPeaks.add(i);
+        }
+
+        while (kPeaks.size() < k) kPeaks.add(-1);
+
+        return kPeaks;
     }
 
     public static List<Integer> twoPeaks(List<Integer> arr) {
@@ -86,6 +104,9 @@ public class PeakFinding {
         System.out.println("Elapsed Time: " + (fastEnd - fastStart));
         System.out.println("Peak at index: " + indexFast);
 
-        System.out.print(twoPeaks(example));
+        System.out.println(twoPeaks(example));
+
+        List<Integer> example2 = Arrays.asList(1,0,1,0,1,0);
+        System.out.println( kPeaksIterative(example2, 3));
     }
 }
