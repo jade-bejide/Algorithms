@@ -13,6 +13,7 @@ public class PeakFinding {
             if (arr.get(i) >= arr.get(i-1) && arr.get(i) >= arr.get(i+1)) return i;
         }
 
+        //never called due to the lemma every integer array has a peak
         return -1;
     }
 
@@ -34,8 +35,38 @@ public class PeakFinding {
         return mid + 1 + fastPeakFinding(arr.subList(mid+1, n));
     }
 
+    public static List<Integer> twoPeaks(List<Integer> arr) {
+        int n = arr.size();
+        int mid = Math.floorDiv(n,2);
+
+        List<Integer> left = arr.subList(0, mid+1);
+        List<Integer> right = arr.subList(mid+1, n);
+
+        //following two while loops for correctness
+        int i = mid;
+        int j = mid+1;
+        while (arr.get(i) <= arr.get(j) &&  arr.get(j) >= arr.get(j+1) && i > 0) {
+            left = arr.subList(0, i-1);
+            i -= 1;
+            j -= 1;
+        }
+
+        i = mid;
+        j = mid-1;
+        while (arr.get(j) >= arr.get(i) && i < n) {
+            right = arr.subList(i+1, n);
+            i += 1;
+            j += 1;
+        }
+
+        Integer leftPeak = fastPeakFinding(left);
+        Integer rightPeak = fastPeakFinding(right) + i;
+
+        return Arrays.asList(leftPeak, rightPeak);
+    }
+
     public static void main(String... args) {
-        List<Integer> example = Arrays.asList(10, 14, 15, 2, 23, 90, 67);
+        List<Integer> example = Arrays.asList(10, 14, 15, 2, 23, 19, 67);
 
         long simpleStart = System.nanoTime();
         Integer indexSimple = peakFindingSimple(example);
@@ -54,5 +85,7 @@ public class PeakFinding {
         System.out.println("Fast Peak Finding: ");
         System.out.println("Elapsed Time: " + (fastEnd - fastStart));
         System.out.println("Peak at index: " + indexFast);
+
+        System.out.print(twoPeaks(example));
     }
 }
