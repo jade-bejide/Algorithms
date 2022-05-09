@@ -13,13 +13,18 @@ def maxSubarray(arr):
     end = n
 
     for i in range(1, n-1):
+        #last solution wasn't optimal, let's try again
         if m[i-1] < 0:
             m[i] = arr[i]
             start = i
         else:
+            #add to working solution
             m[i] = arr[i] + m[i-1]
-            
+
+        #update q to hold best solution
         q = max(q, m[i])
+
+        #if this is current working version, update end pointer
         if q == m[i]:
             end -= 1
 
