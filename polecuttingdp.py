@@ -6,12 +6,25 @@ class PoleCuttingDp(object):
     def bottomUpCutPole(self):
         r = [None]*(self.__n+1)
         r[0] = 0
+        
         for j in range(1, self.__n+1):
             q = -float("inf")
             for i in range(j):
                 q = max(q, self.__prices[i] + r[j-i-1])
             r[j] = q
         return r[self.__n]
+
+    def bottomUpCutPoleOptSoln(self):
+        s = [None]*self.__n
+        r = [None]*(self.__n+1)
+        r[0] = 0
+        
+        for j in range(1, self.__n+1):
+            q = -float("inf")
+            for i in range(j):
+                if self.__prices[i] + r[j-i-1]:
+                    s[j] = i
+        return r[self.__n], s
 
     def memoizedCutPoleAux(self, p, n, r):
         if r[n] >= 0:

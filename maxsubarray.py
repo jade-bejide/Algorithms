@@ -3,7 +3,6 @@ from math import floor
 class MaximumSubarray(object):
     def __init__(self, arr):
         self.__arr = self.computeDeltas(arr)
-        print(self.__arr)
         self.__n = len(arr)
         
     def crossesMidPointIndices(self, arr):
@@ -46,7 +45,6 @@ class MaximumSubarray(object):
 
         for i in range(0, n):
             total += arr[i]
-            if isLeft: print("current:", arr[i], "working total:",total, "max:", maxi)
             if total > maxi and total > 0:
                 maxi = total
                 indexE += 1
@@ -73,9 +71,6 @@ class MaximumSubarray(object):
         left = self.inLeftOrRight(0, floor(self.__n/2), True)
         middle = self.crossesMidPoint()
         right = self.inLeftOrRight(floor(self.__n/2), self.__n, False)
-        print("Left: ", left)
-        print("Middle: ", middle)
-        print("Right: ", right)
 
         if left[2] > middle[2]:
             if left[2] > right[2]:
