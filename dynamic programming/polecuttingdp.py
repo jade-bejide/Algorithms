@@ -12,6 +12,7 @@ class PoleCuttingDp(object):
             for i in range(j):
                 q = max(q, self.__prices[i] + r[j-i-1])
             r[j] = q
+        print(r)
         return r[self.__n]
 
     def bottomUpCutPoleOptSoln(self):
@@ -24,6 +25,7 @@ class PoleCuttingDp(object):
             for i in range(j):
                 if self.__prices[i] + r[j-i-1]:
                     s[j] = i
+        print(r)
         return r[self.__n], s
 
     def memoizedCutPoleAux(self, p, n, r):
@@ -46,10 +48,8 @@ class PoleCuttingDp(object):
         return self.memoizedCutPoleAux(self.__prices, self.__n, r)
 
 
-p1 = [1,5,8,9,10,17,17,20,24,30]
+p1 = [1,6,7,9,12,17,18,20,23,24]
 
 solns = PoleCuttingDp(p1, 10)
-solns2 = PoleCuttingDp(p1, 5)
 print(solns.bottomUpCutPole())
-print(solns2.bottomUpCutPole())
 print(solns.memoizedCutPole())

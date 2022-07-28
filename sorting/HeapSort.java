@@ -4,6 +4,8 @@ import java.util.List;
 
 public class HeapSort {
 
+    static int nodeExchanges;
+
     public static Integer extractMax(List<Integer> arr) {
         arr = heapSort(arr, true);
 
@@ -48,19 +50,24 @@ public class HeapSort {
 
         if (r != -1 && r <= n && arr.get(r) > arr.get(largest)) largest = r;
 
+        System.out.println("f");
         //if a swap has been performed, heapify again
         if (largest != i) {
+            nodeExchanges += 1;
+            System.out.println(nodeExchanges);
             int temp = arr.get(i);
             arr.set(i, arr.get(largest));
             arr.set(largest, temp);
 
             arr = maxHeapify(arr, largest);
         }
+        
 
         return arr;
     }
 
     public static List<Integer> minHeapify(List<Integer> arr, int i) {
+        
         int n = arr.size();
         //Original algorithm assumes there's always a complete binary tree
         //So extra checks needed for any array
@@ -128,10 +135,11 @@ public class HeapSort {
 
     public static void main(String... args) {
         List<Integer> iE = Arrays.asList(1,4,2,6,2);
-        List<Integer> iE2 = Arrays.asList(5,17,0,9,1,4,2,3,1,0);
+        List<Integer> iE2 = Arrays.asList(5,7,3,11,9,8,9,1,3);
 
-        System.out.println(heapSort(iE, false));
-        System.out.println(heapSort(iE2, false));
+        //System.out.println(heapSort(iE, false));
+        System.out.println(heapSort(iE2, true));
+        System.out.println(nodeExchanges);
         // System.out.println(extractMax(iE2));
         // System.out.println(extractMax(iE2,2));
     }

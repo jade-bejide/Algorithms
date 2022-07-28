@@ -1,15 +1,14 @@
 import math
 def circular(arr, l, r):
+    
+
     arr = arr[l:r+1]
     n = len(arr)
-
-    p = math.floor((l+r)/ 2)-1
-    if arr[(p+1) % n] < arr[p]:
-        return (p+1) % n
-    if arr[l] >= arr[p]:
-        circular(arr, l, p-1) 
-    elif arr[l] < arr[p]:
-        circular(arr, p+1, r)
+    
+    for q in range(0, n):
+        l = 0
+        r = n -1 
+        p = math.floor
 
 k2 = [35,42,5,15,27,29]
 k4 = [27,29,35,42,5,15]

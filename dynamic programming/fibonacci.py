@@ -1,4 +1,5 @@
 from benchmarks import Benchmarks
+from bespoke import invariants
         
 def recursiveFib(n):
     if n <= 1:
@@ -19,12 +20,16 @@ def dpFib(n):
 
     return a[n-1]
 
+def fibInv(c, a, b):
+    return (c == a + b)
+
 def dpFibImpr(n):
     if n <= 1:
         return n
 
     a = 0
     b = 1
+    
     for i in range(2, n):
         c = a + b
         a = b
